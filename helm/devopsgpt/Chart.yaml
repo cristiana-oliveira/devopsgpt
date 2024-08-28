@@ -1,5 +1,5 @@
 apiVersion: v2
-name: dissertation
+name: devopsgpt
 description: A Helm chart for deploying a Java application
 version: 0.1.0
 appVersion: "1.0"
