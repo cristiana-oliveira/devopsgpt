@@ -78,6 +78,13 @@ jobs:
         run: |
           helm upgrade --install release helm/devopsgpt --set image.repository=myrepo --set image.tag=${{ github.sha }}
 
+      # Step 14: Apply Istio Resources
+      - name: Apply Istio Gateway
+        run: |
+            kubectl apply -f istio/gateway.yaml
+            kubectl apply -f istio/virtualservice.yaml
+            kubectl apply -f istio/destinationrule.yaml
+
       # Step 12: Verify the Deployment
       - name: Verify Deployment
         run: |
