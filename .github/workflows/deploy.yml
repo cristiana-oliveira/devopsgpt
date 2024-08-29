@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - prompt2
 
 jobs:
   build:
