@@ -90,5 +90,5 @@ jobs:
         run: |
           minikube service list
           kubectl wait --for=condition=ready pod -l app=devopsgpt --timeout=1m -n default
-          kubectl get pods
+          kubectl get pods -n default
           kubectl rollout status deployment/release-devopsgpt
