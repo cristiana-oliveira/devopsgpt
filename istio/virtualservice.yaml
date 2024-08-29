@@ -1,19 +1,19 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: {{ .Chart.Name }}
+  name: devopsgpt
   namespace: default
 spec:
   hosts:
     - "*"
   gateways:
-    - {{ .Chart.Name }}-gateway
+    - devopsgpt-gateway
   http:
     - match:
         - uri:
             prefix: /
       route:
         - destination:
-            host: {{ .Chart.Name }}
+            host: devopsgpt
             port:
               number: 8080
