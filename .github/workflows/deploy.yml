@@ -45,7 +45,7 @@ jobs:
         id: minikube
         with:
           minikube-version: 1.33.1
-          kubernetes-version: v1.28.3
+          kubernetes-version: v1.31.0
 
       # Step 7: Set up Docker for Minikube
       - name: Set up Docker for Minikube
