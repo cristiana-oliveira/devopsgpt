@@ -44,7 +44,7 @@ jobs:
         uses: medyagh/setup-minikube@latest
         id: minikube
         with:
-          minikube-version: 1.32.0
+          minikube-version: 1.33.1
           kubernetes-version: v1.28.3
 
       # Step 7: Set up Docker for Minikube
