@@ -42,6 +42,10 @@ jobs:
       # Step 6: Set up Minikube
       - name: Set up Minikube
         uses: medyagh/setup-minikube@latest
+        id: minikube
+        with:
+          minikube-version: 1.32.0
+          kubernetes-version: v1.28.3
 
       # Step 7: Set up Docker for Minikube
       - name: Set up Docker for Minikube
@@ -89,5 +93,6 @@ jobs:
       - name: Verify Deployment
         run: |
           minikube service list
-          kubectl rollout status deployment/release-devopsgpt
+          kubectl wait --for=condition=ready pod -l app=devopsgpt --timeout=1m -n default
           kubectl get pods -n default
+          kubectl rollout status deployment/release-devopsgpt
