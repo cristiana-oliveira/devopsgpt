@@ -93,6 +93,7 @@ jobs:
       - name: Verify Deployment
         run: |
           minikube service list
+          kubectl rollout status deployment/release-devopsgpt
           kubectl wait --for=condition=ready pod -l app=devopsgpt --timeout=1m -n default
           kubectl get pods -n default
-          kubectl rollout status deployment/release-devopsgpt
+          
