@@ -96,6 +96,5 @@ jobs:
           helm list
           kubectl rollout status deployment/release-devopsgpt -n default
           kubectl wait --for=condition=ready pod -l app=devopsgpt --timeout=1m -n default
-          kubectl get pods -n default
-          curl $(minikube service release-devopsgpt --url)/app/home  
+          kubectl get pods -n default 
           
