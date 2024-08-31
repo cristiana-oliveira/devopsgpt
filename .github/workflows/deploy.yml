@@ -67,11 +67,13 @@ jobs:
           helm repo update
           helm install istio-base istio/base -n istio-system --create-namespace
           helm install istiod istio/istiod -n istio-system
-          helm install istio-ingress istio/gateway -n istio-system  
+          helm install istio-ingress istio/gateway -n istio-system
+          helm install istio-telemetry istio/telemetry -n istio-system
 
       # Step 9: Label the default namespace for Istio sidecar injection
       - name: Label default namespace for Istio
         run: kubectl label namespace default istio-injection=enabled
+
 
       # Step 10: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
@@ -83,7 +85,7 @@ jobs:
           helm upgrade --install release helm/devopsgpt --set image.repository=myrepo --set image.tag=${{ github.sha }}
 
       # Step 14: Apply Istio Resources
-      - name: Apply Istio Gateway
+      - name: Apply Istio Resources
         run: |
             kubectl apply -f istio/gateway.yaml
             kubectl apply -f istio/virtualservice.yaml
