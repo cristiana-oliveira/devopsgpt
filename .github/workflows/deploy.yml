@@ -68,7 +68,7 @@ jobs:
           helm install istio-base istio/base -n istio-system --create-namespace
           helm install istiod istio/istiod -n istio-system
           helm install istio-ingress istio/gateway -n istio-system
-          
+          helm install istio-telemetry istio/telemetry -n istio-system
 
       # Step 9: Label the default namespace for Istio sidecar injection
       - name: Label default namespace for Istio
