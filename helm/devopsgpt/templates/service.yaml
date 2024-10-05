@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     app: {{ .Chart.Name }}
-  type: NodePort
+  type: ${{ .Values.service.type }}
   ports:
     - name: http
       port: {{ .Values.service.port }}
