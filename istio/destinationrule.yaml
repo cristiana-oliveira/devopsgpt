@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: devopsgpt
+  namespace: default
+spec:
+  host: devopsgpt
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN

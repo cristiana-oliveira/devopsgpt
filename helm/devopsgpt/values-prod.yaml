@@ -3,10 +3,10 @@ replicaCount: 1
 image:
   repository: myrepo
   tag: "latest"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 80
 
 ingress:

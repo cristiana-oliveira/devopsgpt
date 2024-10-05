@@ -4,6 +4,17 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
 
 jobs:
   build:
@@ -41,6 +52,10 @@ jobs:
       # Step 6: Set up Minikube
       - name: Set up Minikube
         uses: medyagh/setup-minikube@latest
+        id: minikube
+        with:
+          minikube-version: 1.33.1
+          kubernetes-version: v1.31.0
 
       # Step 7: Set up Docker for Minikube
       - name: Set up Docker for Minikube
@@ -55,6 +70,22 @@ jobs:
       - name: Load Docker Image into Minikube
         run: minikube image load myrepo:${{ github.sha }}
 
+      # Step 8: Install Istio using Helm
+      - name: Install Istio
+        run: |
+          helm repo add istio https://istio-release.storage.googleapis.com/charts
+          helm repo update
+          helm install istio-base istio/base -n istio-system --create-namespace
+          helm install istiod istio/istiod -n istio-system
+          helm install istio-ingress istio/gateway -n istio-system
+          kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.23/samples/addons/prometheus.yaml
+          kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.23/samples/addons/kiali.yaml
+
+      # Step 9: Label the default namespace for Istio sidecar injection
+      - name: Label default namespace for Istio
+        run: kubectl label namespace default istio-injection=enabled
+
+
       # Step 10: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
         run: helm template release helm/devopsgpt --set image.repository=myrepo --set image.tag=${{ github.sha }} > k8s-manifests.yaml
@@ -64,10 +95,19 @@ jobs:
         run: |
           helm upgrade --install release helm/devopsgpt --set image.repository=myrepo --set image.tag=${{ github.sha }}
 
+      # Step 14: Apply Istio Resources
+      - name: Apply Istio Resources
+        run: |
+            kubectl apply -f istio/gateway.yaml
+            kubectl apply -f istio/virtualservice.yaml
+            kubectl apply -f istio/destinationrule.yaml
+
       # Step 12: Verify the Deployment
       - name: Verify Deployment
         run: |
           minikube service list
+          helm list
+          kubectl rollout status deployment/release-devopsgpt -n default
           kubectl wait --for=condition=ready pod -l app=devopsgpt --timeout=1m -n default
-          kubectl get pods
-          kubectl rollout status deployment/release-devopsgpt
+          kubectl get pods -n default 
+          
