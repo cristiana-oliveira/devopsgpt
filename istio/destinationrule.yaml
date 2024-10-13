@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: devopsgpt
+  name: devopsgpt-destinationrule
   namespace: default
 spec:
   host: devopsgpt

@@ -1,12 +1,12 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: my-app-policy
+  name: devopsgpt-policy
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: devopsgpt
   action: ALLOW
   rules:
     - from:
