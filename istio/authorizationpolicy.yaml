@@ -11,4 +11,4 @@ spec:
   rules:
     - from:
         - source:
-            ipBlocks: {{.Values.istio.ipBlocks}}  # Specify the IP range allowed to access the service
+            ipBlocks: {{ .Values.}}  # Specify the IP range allowed to access the service
