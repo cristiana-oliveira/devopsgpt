@@ -88,7 +88,7 @@ jobs:
       # Step 10: Create Kubernetes Secrets dynamically from GitHub Secrets
       - name: Create Kubernetes Secrets
         run: |
-          kubectl create secret generic devopsgpt-secret \
+            kubectl create secret generic devopsgpt-secret \
             --from-literal=DB_USERNAME=${{ secrets.DB_USERNAME }} \
             --from-literal=DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
             -n default --dry-run=client -o yaml | kubectl apply -f -
@@ -108,7 +108,7 @@ jobs:
             kubectl apply -f istio/gateway.yaml
             kubectl apply -f istio/virtualservice.yaml
             kubectl apply -f istio/destinationrule.yaml
-          kubectl apply -f istio/authorizationpolicy.yaml
+            kubectl apply -f istio/authorizationpolicy.yaml
 
       # Step 14: Verify the Deployment
       - name: Verify Deployment
