@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: my-app-policy
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            ipBlocks: {{.Values.istio.ipBlocks}}  # Specify the IP range allowed to access the service

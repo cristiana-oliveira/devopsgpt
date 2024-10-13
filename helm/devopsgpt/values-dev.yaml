@@ -9,6 +9,9 @@ service:
   type: NodePort
   port: 80
 
+istio:
+  ipBlocks: ["192.168.1.0/24"]
+
 ingress:
   enabled: false
 

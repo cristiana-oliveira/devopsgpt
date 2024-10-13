@@ -85,24 +85,32 @@ jobs:
       - name: Label default namespace for Istio
         run: kubectl label namespace default istio-injection=enabled
 
+      # Step 10: Create Kubernetes Secrets dynamically from GitHub Secrets
+      - name: Create Kubernetes Secrets
+        run: |
+          kubectl create secret generic devopsgpt-secret \
+            --from-literal=DB_USERNAME=${{ secrets.DB_USERNAME }} \
+            --from-literal=DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+            -n default --dry-run=client -o yaml | kubectl apply -f -
 
-      # Step 10: Generate Kubernetes YAML files using Helm
+      # Step 11: Generate Kubernetes YAML files using Helm
       - name: Generate Kubernetes YAML files
         run: helm template release helm/devopsgpt --set image.repository=myrepo --set image.tag=${{ github.sha }} > k8s-manifests.yaml
 
-      # Step 11: Deploy to Minikube using Helm
+      # Step 12: Deploy to Minikube using Helm
       - name: Deploy to Minikube
         run: |
           helm upgrade --install release helm/devopsgpt --set image.repository=myrepo --set image.tag=${{ github.sha }}
 
-      # Step 14: Apply Istio Resources
+      # Step 13: Apply Istio Resources
       - name: Apply Istio Resources
         run: |
             kubectl apply -f istio/gateway.yaml
             kubectl apply -f istio/virtualservice.yaml
             kubectl apply -f istio/destinationrule.yaml
+          kubectl apply -f istio/authorizationpolicy.yaml
 
-      # Step 12: Verify the Deployment
+      # Step 14: Verify the Deployment
       - name: Verify Deployment
         run: |
           minikube service list
