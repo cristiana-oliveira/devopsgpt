@@ -28,7 +28,7 @@ Using Helm for Kubernetes Deployment:
 - Switching to Java 17: Updated the pipeline to use Java 17 (LTS) for the application build.
 - Adding Istio for Traffic Management and Monitoring: Extended the pipeline to install Istio and deploy the necessary resources for traffic management, such as Istio Ingress Gateway, VirtualService, and DestinationRule.
 - Separating Istio Resources into Files: Asked for the separation of Istio resources (Gateway, VirtualService, and DestinationRule) into individual YAML files to enhance maintainability and version control.
-- Adding Multi-Environment Support: Requested the pipeline to support multiple environments (dev, staging, prod) with environment-specific Helm values, secrets, and Istio configurations.
+- Adding Multi-Environment Support: Requested the pipeline to support multiple environments (dev and prod) with environment-specific Helm values, secrets, and Istio configurations.
 - Limiting Destination Rule by IP Range: Asked for the Istio Authorization Policy to restrict access to the application by specific IP ranges and explained how this integrates into the Istio traffic management system.
 - Adding Kubernetes Secrets Management: Integrated Kubernetes Secrets management to securely handle sensitive credentials (like database credentials) within the pipeline, and explained how to dynamically create Kubernetes secrets using GitHub Secrets.
     
