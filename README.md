@@ -20,8 +20,7 @@ Below is a summary of all the prompts I have used in the evaluation process:
 **Summary of Prompts**
 
 - CI/CD Pipeline Setup with Java, Docker, and Kubernetes: Requested a GitHub Actions CI/CD pipeline that builds a Java application using Maven, runs unit tests, builds a Docker image, pushes it to a Docker registry, and deploys it to a Kubernetes cluster.
-Using Helm for Kubernetes Deployment:
-- Asked for a pipeline revision to deploy the Java application using Helm to manage Kubernetes resources, and requested the generated Kubernetes manifests to be saved as separate YAML files.
+Using Helm for Kubernetes Deployment: Asked for a pipeline revision to deploy the Java application using Helm to manage Kubernetes resources, and requested the generated Kubernetes manifests to be saved as separate YAML files.
 - Deploying to Minikube: Modified the pipeline to deploy to a Minikube environment instead of a full Kubernetes cluster.
 - Installing Minikube in the Pipeline: Requested Minikube installation and startup steps to be integrated directly into the pipeline.
 - Using medyagh/setup-minikube@latest for Minikube Setup: Refined the pipeline by asking DevOps GPT to use the medyagh/setup-minikube@latest action for installing and configuring Minikube.
