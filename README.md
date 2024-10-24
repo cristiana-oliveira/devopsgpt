@@ -18,7 +18,7 @@ As part of the evaluation process for DevOps GPT, I will utilize a series of pro
 **The expectations are:**
 
 DevOps GPT should deliver a robust, modular, and scalable pipeline that works seamlessly in local development (Minikube) and production Kubernetes environments.
-These criteria will serve as the basis for evaluating DevOps GPT’s performance, accuracy, and applicability in real-world DevOps workflows. The goal of this survey is to gather expert feedback from experienced engineers on how effectively DevOps GPT has implemented a pipeline in accordance with industry best practices and standards.
+These criteria will serve as the basis for evaluating DevOps GPT’s performance, accuracy, and applicability in real-world DevOps workflows. The goal of this survey is to gather expert feedback from experienced engineers on how effectively DevOps GPT has implemented a pipeline in accordance with industry best practices and standards.Running the application is optional. Experts may review the code without the need to execute it.
 
 Below is a summary of all the prompts I have used in the evaluation process:
 
