@@ -5,7 +5,7 @@ is correctly built and deployed in a Minikube Kubernetes environment with the pr
 
 # Evaluating DevOps GPT
 
-As part of the evaluation process for DevOps GPT, I will utilize a series of prompts that explore a wide range of DevOps practices, including continuous integration/continuous deployment (CI/CD), containerization, Kubernetes orchestration, and advanced traffic management using Istio. These prompts were designed to test DevOps GPT's capabilities in generating functional, production-ready scripts, managing Kubernetes environments, and securely handling sensitive information such as credentials via Kubernetes Secrets.
+To evaluate DevOps GPT, I used a series of prompts covering various DevOps practices, including CI/CD, containerization, Kubernetes orchestration, and advanced traffic management with Istio. These prompts are designed to assess its ability to generate functional, production-ready scripts, manage Kubernetes environments, and securely handle sensitive data, such as credentials, using Kubernetes Secrets.
 
 **The goal of this evaluation is to assess DevOps GPT’s:**
 
